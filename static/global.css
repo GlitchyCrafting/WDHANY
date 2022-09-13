@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=Space+Mono&display=swap');
+
+:root {
+    --bg:        #282a36;
+    --fg:        #f8f8f2;
+    --purple:    #bd93f9;
+    --red:       #ff5555;
+    --comment:   #6272a4;
+    --selection: #44475a;
+}
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: "Fira Mono", monospace;
+    margin: 0rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Mono";
+    text-align: center;
+}
+#editor {
+    width: 75vw;
+    height: 50vh;
+    border: 0rem;
+    margin: 0rem;
+}
+#content {
+    margin: 1vh 10vw;
+}
