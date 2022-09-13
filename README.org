@@ -1,0 +1,5 @@
+* OurCodeCamp
+
+The team has yet to discuss a name for this project, but we will soon.
+
+This project is an attempt to make a better version of FreeCodeCamp.org, but with a more focused scope
