@@ -12,7 +12,7 @@ body {
     background-color: var(--bg);
     color: var(--fg);
     font-family: "Fira Mono", monospace;
-    margin: 0rem;
+    margin: 1vh 10vw;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: "Space Mono";
@@ -24,6 +24,17 @@ h1, h2, h3, h4, h5, h6 {
     border: 0rem;
     margin: 0rem;
 }
-#content {
-    margin: 1vh 10vw;
+button {
+    background-color: var(--comment);
+    color: var(--fg);
+    border: hidden;
+}
+input {
+    background-color: var(--selection);
+    color: var(--fg);
+    border: hidden;
+}
+input:focus {
+    border: double;
+    border-color: var(--fg);
 }

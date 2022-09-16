@@ -1,2 +1,7 @@
-build/
 .ccls-cache/
+.cmake/
+build/
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+*.sqlite

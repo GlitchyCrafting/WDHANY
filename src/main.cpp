@@ -1,21 +1,21 @@
 // CROW Libs
 #define CROW_MAIN
-#include <crow.h>
-#include <crow/middlewares/cookie_parser.h>
+#include "crow.h"
+#include "crow/middlewares/cookie_parser.h"
 
 // Std Libs
 #include <stdio.h>
 #include <filesystem>
 
 // GC Libs
-#include "sql.h"
+#include "include/sql.h"
 
 int main () {
   // Initialize Everything
   crow::App<crow::CookieParser> app;
   gc::SQL database;
 
-  // Setup for first start. Ignore the "no member named 'filesystem' in namespace 'std'" error, it should compile just fine.
+  // Setup for first start.
   if (!std::filesystem::exists("./db.sqlite")) {
     printf("First time?\n");
     database.init("db.sqlite");
@@ -47,9 +47,18 @@ int main () {
 
   // Define the lesson endpoint
   // TODO IN-PROGRESS make a lessons page that grabs a lesson from the db
-  CROW_ROUTE(app, "/lesson")([](){
-    auto page = crow::mustache::load("lesson.html").render();
-    return page;
+  CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST)
+    ([](const crow::request& req, int id) {
+      std::cout << req.body;
+      crow::mustache::context ctx({
+          {"id", id},
+          {"name", "Example Title"},
+          {"content", "Example Content"},
+          {"code", "Some Example Code"},
+          {"answer", "The Answer"}
+        });
+      auto page = crow::mustache::load("lesson.html");
+      return page.render(ctx);
   });
 
   // Set the port, use multiple threads, run the app
