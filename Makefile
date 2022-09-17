@@ -130,19 +130,6 @@ WDHANY/fast:
 .PHONY : WDHANY/fast
 
 #=============================================================================
-# Target rules for targets named GC-SQL
-
-# Build rule for target.
-GC-SQL: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GC-SQL
-.PHONY : GC-SQL
-
-# fast build rule for target.
-GC-SQL/fast:
-	$(MAKE) $(MAKESILENT) -f build/CMakeFiles/GC-SQL.dir/build.make build/CMakeFiles/GC-SQL.dir/build
-.PHONY : GC-SQL/fast
-
-#=============================================================================
 # Target rules for targets named templates_copy
 
 # Build rule for target.
@@ -178,7 +165,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... static_copy"
 	@echo "... templates_copy"
-	@echo "... GC-SQL"
 	@echo "... WDHANY"
 .PHONY : help
 

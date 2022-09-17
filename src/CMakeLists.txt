@@ -9,9 +9,7 @@ link_directories(/usr/lib include)
 find_package(Crow)
 find_package(ZLIB)
 
-add_library(GC-SQL include/sql.cpp)
-
-target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 GC-SQL)
+target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3)
 
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/templates/)
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/static/)

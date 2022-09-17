@@ -7,43 +7,21 @@
 #include <stdio.h>
 #include <filesystem>
 
-// GC Libs
-#include "include/sql.h"
+// SQLite_ORM
+#include "include/sqlite_orm.h"
+#include "include/sqlinit.h"
 
 int main () {
   // Initialize Everything
   crow::App<crow::CookieParser> app;
-  gc::SQL database;
 
-  // Setup for first start.
-  if (!std::filesystem::exists("./db.sqlite")) {
-    printf("First time?\n");
-    database.init("db.sqlite");
-    database.exec(
-                  "CREATE TABLE USERS(            " \
-                  "ID INT PRIMARY KEY   NOT NULL, " \
-                  "USERNAME       TEXT  NOT NULL, " \
-                  "PASSWORD       TEXT  NOT NULL, " \
-                  "SALT           TEXT  NOT NULL);"
-                  );
-    database.exec(
-                  "CREATE TABLE LESSONS(          " \
-                  "ID INT PRIMARY KEY   NOT NULL, " \
-                  "TITLE          TEXT  NOT NULL, " \
-                  "CONTENT        TEXT  NOT NULL, " \
-                  "CODE           TEXT  NOT NULL, " \
-                  "CODE_ANSWER    TEXT  NOT NULL);"
-                  );
-  } else {
-    database.init("db.sqlite");
-  }
+  auto database = sqlinit();
 
   // Define the root endpoint
   // TODO make a proper landing page
   CROW_ROUTE(app, "/").methods(crow::HTTPMethod::GET)
-    ([](crow::response &res){
-      res.redirect("/lesson/0");
-      res.end();
+    ([](){
+      return "There is not a homepage yet.";
     });
 
   // Define the lesson endpoint
