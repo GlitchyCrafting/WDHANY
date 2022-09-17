@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #editor {
     width: 75vw;
-    height: 50vh;
+    height: 75vh;
     border: 0rem;
     margin: 0rem;
 }
@@ -28,13 +28,20 @@ button {
     background-color: var(--comment);
     color: var(--fg);
     border: hidden;
+    display: block;
 }
 input {
     background-color: var(--selection);
     color: var(--fg);
     border: hidden;
+    display: block;
+    margin: 0.5rem;
 }
 input:focus {
     border: double;
     border-color: var(--fg);
+}
+#center-me {
+    margin-left: auto;
+    margin-right: auto;
 }

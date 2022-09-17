@@ -60,7 +60,19 @@ int main () {
         });
       auto page = crow::mustache::load("lesson.html");
       return page.render(ctx);
-  });
+    });
+
+  CROW_ROUTE(app, "/signup").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
+    ([]() {
+      auto page = crow::mustache::load("signup.html");
+      return page.render();
+    });
+
+  CROW_ROUTE(app, "/login").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
+    ([]() {
+      auto page = crow::mustache::load("login.html");
+      return page.render();
+    });
 
   // Set the port, use multiple threads, run the app
   app.port(3000).multithreaded().run();
