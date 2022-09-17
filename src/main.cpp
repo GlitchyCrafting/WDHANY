@@ -40,14 +40,15 @@ int main () {
 
   // Define the root endpoint
   // TODO make a proper landing page
-  CROW_ROUTE(app, "/")([](crow::response &res){
-    res.redirect("/lesson");
-    res.end();
-  });
+  CROW_ROUTE(app, "/").methods(crow::HTTPMethod::GET)
+    ([](crow::response &res){
+      res.redirect("/lesson/0");
+      res.end();
+    });
 
   // Define the lesson endpoint
   // TODO IN-PROGRESS make a lessons page that grabs a lesson from the db
-  CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST)
+  CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
     ([](const crow::request& req, int id) {
       std::cout << req.body;
       crow::mustache::context ctx({

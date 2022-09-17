@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named GCCodeCamp-Server
+# Target rules for targets named WDHANY
 
 # Build rule for target.
-GCCodeCamp-Server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GCCodeCamp-Server
-.PHONY : GCCodeCamp-Server
+WDHANY: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WDHANY
+.PHONY : WDHANY
 
 # fast build rule for target.
-GCCodeCamp-Server/fast:
-	$(MAKE) $(MAKESILENT) -f build/CMakeFiles/GCCodeCamp-Server.dir/build.make build/CMakeFiles/GCCodeCamp-Server.dir/build
-.PHONY : GCCodeCamp-Server/fast
+WDHANY/fast:
+	$(MAKE) $(MAKESILENT) -f build/CMakeFiles/WDHANY.dir/build.make build/CMakeFiles/WDHANY.dir/build
+.PHONY : WDHANY/fast
 
 #=============================================================================
 # Target rules for targets named GC-SQL
@@ -179,7 +179,7 @@ help:
 	@echo "... static_copy"
 	@echo "... templates_copy"
 	@echo "... GC-SQL"
-	@echo "... GCCodeCamp-Server"
+	@echo "... WDHANY"
 .PHONY : help
 
 

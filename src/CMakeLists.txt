@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(GCCodeCamp-Server)
-add_executable(GCCodeCamp-Server main.cpp)
+project(WDHANY)
+add_executable(WDHANY main.cpp)
 
 include_directories(/usr/include include)
 link_directories(/usr/lib include)
@@ -11,10 +11,10 @@ find_package(ZLIB)
 
 add_library(GC-SQL include/sql.cpp)
 
-target_link_libraries(GCCodeCamp-Server PUBLIC Crow::Crow sqlite3 GC-SQL)
+target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 GC-SQL)
 
-file(MAKE_DIRECTORY ${GCCodeCamp-Server_BINARY_DIR}/templates/)
-file(MAKE_DIRECTORY ${GCCodeCamp-Server_BINARY_DIR}/static/)
+file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/templates/)
+file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/static/)
 
 add_custom_command(OUTPUT templates/*
   COMMAND ${CMAKE_COMMAND} -E

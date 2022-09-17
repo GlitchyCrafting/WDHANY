@@ -2,4 +2,6 @@
 
 cmake .
 make
-./build/WDHANY
+cd ./build
+./WDHANY
+cd ..
