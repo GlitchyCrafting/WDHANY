@@ -6,10 +6,12 @@ add_executable(WDHANY main.cpp)
 include_directories(/usr/include include)
 link_directories(/usr/lib include)
 
-find_package(Crow)
+find_package(Crow REQUIRED)
 find_package(ZLIB)
+set(OPENSSL_USE_STATIC_LIBS TRUE)
+find_package(OpenSSL REQUIRED)
 
-target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3)
+target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 OpenSSL::Crypto)
 
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/templates/)
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/static/)

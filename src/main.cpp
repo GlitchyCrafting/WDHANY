@@ -11,7 +11,16 @@
 #include "include/sqlite_orm.h"
 #include "include/sqlinit.h"
 
+// CryptoPP
+#include "include/encryption.h"
+
 int main () {
+
+  secure_string message = "Once this works, I go to bed.";
+  std::string encryptedMessage = encrypt(message);
+  std::string decryptedMessage = decrypt(encryptedMessage.c_str());
+  std::cout << encryptedMessage << "\n" << decryptedMessage << "\n";
+
   // Initialize Everything
   crow::App<crow::CookieParser> app;
 
