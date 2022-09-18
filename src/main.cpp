@@ -11,19 +11,16 @@
 #include "include/sqlite_orm.h"
 #include "include/sqlinit.h"
 
+// User Control
+//#include "usercontrol.h"
+
 // CryptoPP
-#include "include/encryption.h"
+#include "include/hashing.h"
 
 int main () {
 
-  secure_string message = "Once this works, I go to bed.";
-  std::string encryptedMessage = encrypt(message);
-  std::string decryptedMessage = decrypt(encryptedMessage.c_str());
-  std::cout << encryptedMessage << "\n" << decryptedMessage << "\n";
-
   // Initialize Everything
   crow::App<crow::CookieParser> app;
-
   auto database = sqlinit();
 
   // Define the root endpoint

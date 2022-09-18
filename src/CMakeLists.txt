@@ -8,10 +8,8 @@ link_directories(/usr/lib include)
 
 find_package(Crow REQUIRED)
 find_package(ZLIB)
-set(OPENSSL_USE_STATIC_LIBS TRUE)
-find_package(OpenSSL REQUIRED)
 
-target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 OpenSSL::Crypto)
+target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 argon2)
 
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/templates/)
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/static/)
