@@ -4,17 +4,17 @@
 
 struct User {
   int id;
-  const char *username;
-  const char *email;
-  const char *password;
+  std::string username;
+  std::string email;
+  std::string password;
 };
 
 struct Lesson {
   int id;
-  const char *name;
-  const char *content;
-  const char *code;
-  const char *answer;
+  std::string name;
+  std::string content;
+  std::string code;
+  std::string answer;
 };
 
 auto sqlinit() {
@@ -36,5 +36,4 @@ auto sqlinit() {
 
 void playground() {
   auto database = sqlinit();
-  database;
 }
