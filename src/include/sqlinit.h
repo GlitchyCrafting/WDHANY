@@ -1,21 +1,20 @@
 #pragma once
 
 #include "sqlite_orm.h"
-#include <string>
 
 struct User {
   int id;
-  std::string username;
-  std::string email;
-  std::string password;
+  const char *username;
+  const char *email;
+  const char *password;
 };
 
 struct Lesson {
   int id;
-  std::string name;
-  std::string content;
-  std::string code;
-  std::string answer;
+  const char *name;
+  const char *content;
+  const char *code;
+  const char *answer;
 };
 
 auto sqlinit() {
@@ -33,4 +32,9 @@ auto sqlinit() {
                                                          sqlite_orm::make_column("ANSWER", &Lesson::answer)));
   database.sync_schema();
   return database;
+}
+
+void playground() {
+  auto database = sqlinit();
+  database;
 }
