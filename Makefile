@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gc/Projects/WebsocketApp/Server
+CMAKE_SOURCE_DIR = /home/gc/Projects/WDHANY
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gc/Projects/WebsocketApp/Server
+CMAKE_BINARY_DIR = /home/gc/Projects/WDHANY
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gc/Projects/WebsocketApp/Server/CMakeFiles /home/gc/Projects/WebsocketApp/Server//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gc/Projects/WDHANY/CMakeFiles /home/gc/Projects/WDHANY//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gc/Projects/WebsocketApp/Server/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gc/Projects/WDHANY/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,6 +130,19 @@ WDHANY/fast:
 .PHONY : WDHANY/fast
 
 #=============================================================================
+# Target rules for targets named SQLINIT
+
+# Build rule for target.
+SQLINIT: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SQLINIT
+.PHONY : SQLINIT
+
+# fast build rule for target.
+SQLINIT/fast:
+	$(MAKE) $(MAKESILENT) -f build/CMakeFiles/SQLINIT.dir/build.make build/CMakeFiles/SQLINIT.dir/build
+.PHONY : SQLINIT/fast
+
+#=============================================================================
 # Target rules for targets named templates_copy
 
 # Build rule for target.
@@ -165,6 +178,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... static_copy"
 	@echo "... templates_copy"
+	@echo "... SQLINIT"
 	@echo "... WDHANY"
 .PHONY : help
 

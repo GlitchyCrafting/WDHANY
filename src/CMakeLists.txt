@@ -9,7 +9,9 @@ link_directories(/usr/lib include)
 find_package(Crow REQUIRED)
 find_package(ZLIB)
 
-target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 argon2)
+add_library(SQLINIT ${WDHANY_SOURCE_DIR}/include/sqlinit.cpp)
+
+target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3 argon2 SQLINIT)
 
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/templates/)
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/static/)

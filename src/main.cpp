@@ -9,25 +9,31 @@
 
 // SQLite_ORM
 #include "include/sqlite_orm.h"
-#include "include/sqlinit.h"
 
-// User Control
-#include "usercontrol.h"
+struct Lesson {
+  int id;
+  std::string name;
+  std::string content;
+  std::string code;
+  std::string answer;
+};
 
-// CryptoPP
-#include "include/hashing.h"
+auto sqlinit() {
+  auto database = sqlite_orm::make_storage("db.sqlite",
+                                  sqlite_orm::make_table("LESSONS",
+                                                         sqlite_orm::make_column("ID", &Lesson::id, sqlite_orm::autoincrement(), sqlite_orm::primary_key()),
+                                                         sqlite_orm::make_column("NAME", &Lesson::name),
+                                                         sqlite_orm::make_column("CONTENT", &Lesson::content),
+                                                         sqlite_orm::make_column("CODE", &Lesson::code),
+                                                         sqlite_orm::make_column("ANSWER", &Lesson::answer)));
+  database.sync_schema();
+  return database;
+}
 
 int main () {
-
   // Initialize Everything
-  crow::App<crow::CookieParser> app;
+  crow::App<> app;
   auto database = sqlinit();
-  gc::Hasher hasher;
-
-  gc::signup(hasher, "somename", "someemail", "somepassword", database);
-  if (gc::login(hasher, "somename", "somepassword", database)) {
-    printf("Logged in successfully.");
-  }
 
   // Define the root endpoint
   // TODO make a proper landing page
@@ -39,8 +45,8 @@ int main () {
   // Define the lesson endpoint
   // TODO IN-PROGRESS make a lessons page that grabs a lesson from the db
   CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
-    ([](const crow::request& req, int id) {
-      std::cout << req.body;
+    ([](const crow::request& res, int id) {
+      std::cout << res.body;
       crow::mustache::context ctx({
           {"id", id},
           {"name", "Example Title"},
@@ -50,18 +56,6 @@ int main () {
         });
       auto page = crow::mustache::load("lesson.html");
       return page.render(ctx);
-    });
-
-  CROW_ROUTE(app, "/signup").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
-    ([]() {
-      auto page = crow::mustache::load("signup.html");
-      return page.render();
-    });
-
-  CROW_ROUTE(app, "/login").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
-    ([]() {
-      auto page = crow::mustache::load("login.html");
-      return page.render();
     });
 
   // Set the port, use multiple threads, run the app
