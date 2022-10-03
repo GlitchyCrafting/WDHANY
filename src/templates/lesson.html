@@ -17,11 +17,9 @@
         <script>
          function checkSubmission() {
              if (editor.getValue() == "{{ answer }}") {
-                 document.getElementById("submit").setAttribute("value", "true");
-                 window.alert("You got it right!");
+               window.location.href ="/lesson/{{ id + 1 }}"
              } else {
                  document.getElementById("submit").setAttribute("value", "false");
-                 window.alert("Not quite.");
              }
          }
         </script>

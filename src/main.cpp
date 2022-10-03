@@ -46,7 +46,6 @@ int main () {
   // TODO IN-PROGRESS make a lessons page that grabs a lesson from the db
   CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
     ([](const crow::request& res, int id) {
-      std::cout << res.body;
       crow::mustache::context ctx({
           {"id", id},
           {"name", "Example Title"},

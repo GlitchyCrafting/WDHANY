@@ -130,19 +130,6 @@ WDHANY/fast:
 .PHONY : WDHANY/fast
 
 #=============================================================================
-# Target rules for targets named SQLINIT
-
-# Build rule for target.
-SQLINIT: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SQLINIT
-.PHONY : SQLINIT
-
-# fast build rule for target.
-SQLINIT/fast:
-	$(MAKE) $(MAKESILENT) -f build/CMakeFiles/SQLINIT.dir/build.make build/CMakeFiles/SQLINIT.dir/build
-.PHONY : SQLINIT/fast
-
-#=============================================================================
 # Target rules for targets named templates_copy
 
 # Build rule for target.
@@ -178,7 +165,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... static_copy"
 	@echo "... templates_copy"
-	@echo "... SQLINIT"
 	@echo "... WDHANY"
 .PHONY : help
 
