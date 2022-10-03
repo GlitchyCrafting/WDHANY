@@ -31,7 +31,7 @@ auto sqlinit() {
 }
 
 int main () {
-  // Initialize Everything
+  // initialize everything
   crow::App<> app;
   auto database = sqlinit();
 
