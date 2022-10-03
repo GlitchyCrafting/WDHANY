@@ -5,6 +5,7 @@
     --fg:        #f8f8f2;
     --purple:    #bd93f9;
     --red:       #ff5555;
+    --blue:      #8be9fd;
     --comment:   #6272a4;
     --selection: #44475a;
 }
@@ -13,6 +14,11 @@ body {
     color: var(--fg);
     font-family: "Fira Mono", monospace;
     margin: 1vh 10vw;
+}
+p {
+  text-align: center;
+  max-width: 100vh;
+  margin: 1rem auto;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: "Space Mono";
@@ -30,18 +36,6 @@ button {
     border: hidden;
     display: block;
 }
-input {
-    background-color: var(--selection);
-    color: var(--fg);
-    border: hidden;
-    display: block;
-    margin: 0.5rem;
-}
-input:focus {
-    border: double;
-    border-color: var(--fg);
-}
-#center-me {
-    margin-left: auto;
-    margin-right: auto;
-}
+a:link { color: var(--blue) }
+a:hover { color: var(--red) }
+a:visited { color: var(--purple) }

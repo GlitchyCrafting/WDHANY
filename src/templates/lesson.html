@@ -11,18 +11,8 @@
 
         <div id="editor"></div>
         <form actions="" method="post">
-            <button onclick="checkSubmission()" id="submit" name="solved" value="">Submit</button>
+            <button id="submit" name="solved" value="">Submit</button>
         </form>
-
-        <script>
-         function checkSubmission() {
-             if (editor.getValue() == "{{ answer }}") {
-               window.location.href ="/lesson/{{ id + 1 }}"
-             } else {
-                 document.getElementById("submit").setAttribute("value", "false");
-             }
-         }
-        </script>
 
         <script src="/static/ace/ace.js"></script>
         <script src="/static/ace/ext-language_tools.js"></script>

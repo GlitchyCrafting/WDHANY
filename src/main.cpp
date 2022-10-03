@@ -39,7 +39,8 @@ int main () {
   // TODO make a proper landing page
   CROW_ROUTE(app, "/").methods(crow::HTTPMethod::GET)
     ([](){
-      return "There is not a homepage yet.";
+      auto page = crow::mustache::load("home.html");
+      return page.render();
     });
 
   // Define the lesson endpoint
