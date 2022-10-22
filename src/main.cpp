@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <filesystem>
 
-// SQLite_ORM
-#include "include/sqlite_orm.h"
+// SQLite
+#include "sqlite_modern_cpp.h"
 
 struct Lesson {
   int id;
@@ -18,22 +18,28 @@ struct Lesson {
   std::string answer;
 };
 
-auto sqlinit() {
-  auto database = sqlite_orm::make_storage("db.sqlite",
-                                  sqlite_orm::make_table("LESSONS",
-                                                         sqlite_orm::make_column("ID", &Lesson::id, sqlite_orm::autoincrement(), sqlite_orm::primary_key()),
-                                                         sqlite_orm::make_column("NAME", &Lesson::name),
-                                                         sqlite_orm::make_column("CONTENT", &Lesson::content),
-                                                         sqlite_orm::make_column("CODE", &Lesson::code),
-                                                         sqlite_orm::make_column("ANSWER", &Lesson::answer)));
-  database.sync_schema();
-  return database;
+void sqlInit(sqlite::database db) {
+  db <<
+    "create table if not exists lesson ("
+    "   _id integer primary key autoincrement not null,"
+    "   name text,"
+    "   content text,"
+    "   code text,"
+    "   answer text"
+    ");";
 }
+
+//  db << "insert into lesson (name,content,code,answer) values (?,?,?,?);"
+//    << u"Some Lesson"
+//    << u"Some Content"
+//    << u"Some Code"
+//    << u"Some Answer";
 
 int main () {
   // initialize everything
   crow::App<crow::CookieParser> app;
-  auto database = sqlinit();
+  sqlite::database db("db.sqlite");
+  sqlInit(db);
 
   // Define the root endpoint
   // TODO make a proper landing page
@@ -44,17 +50,25 @@ int main () {
     });
 
   // Define the lesson endpoint
-  // TODO IN-PROGRESS make a lessons page that grabs a lesson from the db
   CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
-    ([database](const crow::request& req, int id) {
-//      auto lesson = database.get_all<Lesson>(sqlite_orm::where(sqlite_orm::c(&Lesson::id) = id));
+    ([&db](const crow::request& req, int id){
+
+      std::string name;
+      std::string content;
+      std::string code;
+      std::string answer;
+
+      db << "select name,content,code,answer from lesson where _id = ? ;"
+      << id
+      >>  tie(name, content, code, answer);
+
       crow::mustache::context ctx({
-          {"id", id},
-          {"name", "Example Title"},
-          {"content", "Example Content"},
-          {"code", "Some Example Code"},
-          {"answer", "The Answer"}
-        });
+        {"id", id},
+        {"name", name},
+        {"content", content},
+        {"code", code},
+        {"answer", answer}});
+
       auto page = crow::mustache::load("lesson.html");
       return page.render(ctx);
     });
