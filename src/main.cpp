@@ -32,7 +32,7 @@ auto sqlinit() {
 
 int main () {
   // initialize everything
-  crow::App<> app;
+  crow::App<crow::CookieParser> app;
   auto database = sqlinit();
 
   // Define the root endpoint
@@ -46,7 +46,7 @@ int main () {
   // Define the lesson endpoint
   // TODO IN-PROGRESS make a lessons page that grabs a lesson from the db
   CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
-    ([](const crow::request& res, int id) {
+    ([](const crow::request& req, int id) {
       crow::mustache::context ctx({
           {"id", id},
           {"name", "Example Title"},
@@ -56,6 +56,13 @@ int main () {
         });
       auto page = crow::mustache::load("lesson.html");
       return page.render(ctx);
+    });
+
+  CROW_ROUTE(app, "lesson/<int>/save").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
+    ([&](const crow::request& req, int id) {
+      auto& ctx = app.get_context<crow::CookieParser>(req);
+      ctx.set_cookie("lessonID", "SomeValue").path("/").max_age(120);
+      return "ok!";
     });
 
   // Set the port, use multiple threads, run the app
