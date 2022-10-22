@@ -6,7 +6,6 @@ if [[ $? -gt 0 ]]; then
   exit 1
 fi
 echo "Cmake-d"
-sleep 5
 
 make
 if [[ $? -gt 0 ]]; then
@@ -14,7 +13,6 @@ if [[ $? -gt 0 ]]; then
   exit 2
 fi
 echo "Make-d"
-sleep 5
 
 cd ./build
 ./WDHANY

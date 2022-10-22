@@ -1,4 +1,6 @@
 // CROW Libs
+#include <crow/common.h>
+#include <crow/http_response.h>
 #define CROW_MAIN
 #include "crow.h"
 #include "crow/middlewares/cookie_parser.h"
@@ -29,6 +31,13 @@ void sqlInit(sqlite::database db) {
     ");";
 }
 
+crow::response redirect(std::string location) {
+  crow::response res;
+  res.redirect(location);
+  std::cout << location;
+  return res;
+}
+
 //  db << "insert into lesson (name,content,code,answer) values (?,?,?,?);"
 //    << u"Some Lesson"
 //    << u"Some Content"
@@ -50,6 +59,7 @@ int main () {
     });
 
   // Define the lesson endpoint
+  // TODO Redirect for writing a new cookie when correct
   CROW_ROUTE(app, "/lesson/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
     ([&db](const crow::request& req, int id){
 
@@ -71,6 +81,24 @@ int main () {
 
       auto page = crow::mustache::load("lesson.html");
       return page.render(ctx);
+    });
+
+  // Read Cookies
+  CROW_ROUTE(app, "/read").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
+    ([&](const crow::request& req){
+      auto& ctx = app.get_context<crow::CookieParser>(req);
+      auto value = ctx.get_cookie("LessonNum");
+      std::cout << "http://0.0.0.0:3000/lesson/" + value;
+      return redirect("http://0.0.0.0:3000/lesson/" + value);
+      //return value;
+    });
+
+  // Write Cookies
+  CROW_ROUTE(app, "/write/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
+    ([&](const crow::request& req, int id){
+      auto& ctx = app.get_context<crow::CookieParser>(req);
+      ctx.set_cookie("LessonNum", std::to_string(id)).path("/").max_age(100000000);
+      return redirect("http://0.0.0.0:3000/lesson/" + std::to_string(id));
     });
 
   // Set the port, use multiple threads, run the app
