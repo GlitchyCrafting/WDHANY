@@ -7,7 +7,6 @@ include_directories(/usr/include include)
 link_directories(/usr/lib include)
 
 find_package(Crow REQUIRED)
-find_package(ZLIB)
 
 target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3)
 
