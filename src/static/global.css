@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Space+Mono&display=swap');
 
 :root {
     --bg:        #282a36;
@@ -16,7 +16,6 @@ body {
     margin: 1vh 10vw;
 }
 p {
-  text-align: center;
   max-width: 100vh;
   margin: 1rem auto;
 }

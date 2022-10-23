@@ -96,8 +96,9 @@ int main () {
   // Write Cookies
   CROW_ROUTE(app, "/write/<int>").methods(crow::HTTPMethod::POST, crow::HTTPMethod::GET)
     ([&](const crow::request& req, int id){
+      id = id + 1;
       auto& ctx = app.get_context<crow::CookieParser>(req);
-      ctx.set_cookie("LessonNum", std::to_string(id)).path("/").max_age(100000000);
+      ctx.set_cookie("LessonNum", std::to_string(id)).path("/").max_age(100000000).same_site(crow::CookieParser::Cookie::SameSitePolicy::None);
       return redirect("http://0.0.0.0:3000/lesson/" + std::to_string(id));
     });
 

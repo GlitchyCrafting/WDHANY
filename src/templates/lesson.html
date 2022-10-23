@@ -10,9 +10,7 @@
         <p>{{ content }}</p>
 
         <div id="editor"></div>
-        <form actions="" method="post">
-            <button id="submit" name="solved" value="">Submit</button>
-        </form>
+        <button onclick="checkAnswer()">Submit</button>
 
         <script src="/static/ace/ace.js"></script>
         <script src="/static/ace/ext-language_tools.js"></script>
@@ -26,6 +24,13 @@
                  enableSnippets: false,
                  enableLiveAutocompletion: true
              });
+         editor.setValue("{{ code }}", -1);
+
+         function checkAnswer() {
+           if (editor.getValue() == "{{ answer }}") {
+             window.location.replace("../write/{{ id }}");
+           }
+         }
         </script>
     </body>
 </html>

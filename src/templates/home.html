@@ -6,11 +6,27 @@
     <link rel="stylesheet" href="static/global.css">
   </head>
   <body>
+    <script>if ( document.cookie != "" ) { window.location.replace("/read"); }</script>
+
     <h1>WDHANY</h1>
     <p>The goal of this site is to teach people the why and how things fit together in the code. Once you finish this we recommend <a href="https://www.freecodecamp.com">FreeCodeCamp.com</a>, or just trying stuff and using <a href="https://www.w3schools.com/tags/default.asp">W3Schools</a> as a reference.</p>
+
     <h2>Disclaimer</h2>
-    <p>To make this site as fast and minimal as possible, whatever lesson you are on is stored as a cookie. This saves storage and internet traffic compared to an account system. Not related to efficiency, when you next visit this page you will be auto redirected to your current lesson.</p>
+    <p><strong>We use a cookie to track your lesson.</strong> This saves resources compared to accounts and allows us to redirect you to your current lesson automagically. <strong>You will not be able to get back to this page once you start this tutorial.</strong></p>
     <h2>A Bit About The Design</h2>
-    <p>I personally like the Dracula colorscheme and use it with most of my apps, so I used it here too. If you don't like it, remember my minimalism, more colorschemes means more to store on the server.</p>
+
+    <h4>UI</h4>
+    <p>I chose the <a target="_blank" href="draculatheme.com">Dracula Colorscheme</a> because I like it and it is easy on the eyes. I designed a clean, minimal interface because a bunch of seperators and stuff isn't needed for a site like this. Fonts are <a target="_blank" href="fonts.google.com/specimen/Space+Mono">Space Mono</a> for headers and <a target="_blank" href="https://fonts.google.com/specimen/Fira+Mono">Fira Mono</a> for everything else.</p>
+
+    <h4>Backend</h4>
+    <p>I use the <a target="_blank" href="crowcpp.org">Crow Framework</a> for defining routes and templates and the <a target="_blank" href="github.com/SqliteModernCpp/sqlite_modern_cpp">SqliteModernCpp</a> Library to interact with the database because I, unlike others, like <a target="_blank" href="cplusplus.com">C++</a>. For a while, though, I was tempted to switch to <a target="_blank" href="djangoproject.com">Django</a> for <a target="_blank" href="python.org">Python</a> due to some issues with a different <a target="_blank" href="sqlite.org">Sqlite</a> library, but as you can see I found a better library.</p>
+
+    <button onclick="getStarted()">Get Started</button>
+
+    <script>
+      function getStarted() {
+        window.location.replace("/write/0");
+      }
+    </script>
   </body>
 </html>
