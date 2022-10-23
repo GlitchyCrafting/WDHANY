@@ -1,6 +1,7 @@
 .ccls-cache/
 .cmake/
 build/
+snapshots/
 CMakeFiles/
 CMakeCache*
 cmake_install.cmake

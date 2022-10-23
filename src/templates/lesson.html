@@ -9,8 +9,12 @@
         <h1>{{ id }} - {{ name }}</h1>
         <p>{{ content }}</p>
 
-        <div id="editor"></div>
-        <button onclick="checkAnswer()">Submit</button>
+        <div id="code">
+          <div id="editor"></div>
+          <iframe id="preview"></iframe>
+        </div>
+
+        <button onclick="checkAnswer()" id="submit">Submit</button>
 
         <script src="/static/ace/ace.js"></script>
         <script src="/static/ace/ext-language_tools.js"></script>
@@ -31,6 +35,17 @@
              window.location.replace("../write/{{ id }}");
            }
          }
-        </script>
+
+        const getGeneratedPageURL = ({ source }) => {
+          const getBlobURL = (code, type) => {
+            const blob = new Blob([code], { type })
+            return URL.createObjectURL(blob)
+          }
+
+          return getBlobURL(source, 'text/html')
+        }
+
+        editor.session.on('change', function(delta) { document.getElementById("preview").src = getGeneratedPageURL({source: editor.getValue()}); })
+      </script>
     </body>
 </html>

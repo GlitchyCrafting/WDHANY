@@ -24,10 +24,24 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 #editor {
-    width: 75vw;
+    width:  35vw;
     height: 75vh;
     border: 0rem;
     margin: 0rem;
+    float: left;
+}
+#preview {
+  width: 40vw;
+  height: 75vh;
+  float: right;
+  background-color: #ffffff;
+  border: none;
+  margin: 0rem;
+}
+#submit {
+  position: absolute;
+  bottom: 2%;
+  left: 47%;
 }
 button {
     background-color: var(--comment);
