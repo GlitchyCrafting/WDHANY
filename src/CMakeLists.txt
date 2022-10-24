@@ -6,9 +6,7 @@ add_executable(WDHANY main.cpp)
 include_directories(/usr/include include)
 link_directories(/usr/lib include)
 
-find_package(Crow REQUIRED)
-
-target_link_libraries(WDHANY PUBLIC Crow::Crow sqlite3)
+target_link_libraries(WDHANY PUBLIC sqlite3)
 
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/templates/)
 file(MAKE_DIRECTORY ${WDHANY_BINARY_DIR}/static/)

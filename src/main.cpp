@@ -1,6 +1,6 @@
 // CROW Libs
-#include <crow/common.h>
-#include <crow/http_response.h>
+#include "crow/common.h"
+#include "crow/http_response.h"
 #define CROW_MAIN
 #include "crow.h"
 #include "crow/middlewares/cookie_parser.h"
@@ -11,14 +11,6 @@
 
 // SQLite
 #include "sqlite_modern_cpp.h"
-
-struct Lesson {
-  int id;
-  std::string name;
-  std::string content;
-  std::string code;
-  std::string answer;
-};
 
 void sqlInit(sqlite::database db) {
   db <<
@@ -38,14 +30,8 @@ crow::response redirect(std::string location) {
   return res;
 }
 
-//  db << "insert into lesson (name,content,code,answer) values (?,?,?,?);"
-//    << u"Some Lesson"
-//    << u"Some Content"
-//    << u"Some Code"
-//    << u"Some Answer";
-
 int main () {
-  // initialize everything
+  // Initialize everything
   crow::App<crow::CookieParser> app;
   sqlite::database db("db.sqlite");
   sqlInit(db);
@@ -88,8 +74,8 @@ int main () {
     ([&](const crow::request& req){
       auto& ctx = app.get_context<crow::CookieParser>(req);
       auto value = ctx.get_cookie("LessonNum");
-      std::cout << "http://0.0.0.0:3000/lesson/" + value;
-      return redirect("http://0.0.0.0:3000/lesson/" + value);
+      std::cout << "/lesson/" + value;
+      return redirect("/lesson/" + value);
       //return value;
     });
 
@@ -99,7 +85,7 @@ int main () {
       id = id + 1;
       auto& ctx = app.get_context<crow::CookieParser>(req);
       ctx.set_cookie("LessonNum", std::to_string(id)).path("/").max_age(100000000).same_site(crow::CookieParser::Cookie::SameSitePolicy::None);
-      return redirect("http://0.0.0.0:3000/lesson/" + std::to_string(id));
+      return redirect("/lesson/" + std::to_string(id));
     });
 
   // Set the port, use multiple threads, run the app
