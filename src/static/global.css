@@ -13,40 +13,40 @@ body {
     background-color: var(--bg);
     color: var(--fg);
     font-family: "Fira Mono", monospace;
-    margin: 1vh 10vw;
+    margin: 1% 10%;
 }
 p {
-  max-width: 100vh;
+  max-width: 100%;
   margin: 1rem auto;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: "Space Mono";
     text-align: center;
 }
+#code {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:  space-between;
+}
 #editor {
-    width:  35vw;
-    height: 75vh;
+    width: 40vw;
+    height: 70vh;
     border: 0rem;
-    margin: 0rem;
-    float: left;
+    order: 1;
 }
 #preview {
   width: 40vw;
-  height: 75vh;
-  float: right;
+  height: 70vh;
   background-color: #ffffff;
   border: none;
-  margin: 0rem;
-}
-#submit {
-  position: absolute;
-  bottom: 2%;
-  left: 47%;
+  order: 2;
 }
 button {
     background-color: var(--comment);
     color: var(--fg);
     border: hidden;
+    margin: 1rem auto;
     display: block;
 }
 a:link { color: var(--blue) }
