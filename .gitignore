@@ -3,6 +3,7 @@
 build/
 snapshots/
 CMakeFiles/
+releases/
 CMakeCache*
 cmake_install.cmake
 *.cmake
