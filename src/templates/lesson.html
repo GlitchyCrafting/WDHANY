@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>{{ id }} - {{ name }}</h1>
-        <p>{{ content }}</p>
+        <pre>{{ content }}</pre>
 
         <div id="code">
           <div id="editor"></div>
@@ -19,7 +19,12 @@
         <script src="/static/ace/ace.js"></script>
         <script src="/static/ace/ext-language_tools.js"></script>
         <script>
-         ace.require("ace/ext/language_tools");
+         function htmlDecode(input) {
+          var doc = new DOMParser().parseFromString(input, "text/html");
+          return doc.documentElement.textContent;
+        }
+
+        ace.require("ace/ext/language_tools");
          var editor = ace.edit("editor");
          editor.setTheme("ace/theme/dracula");
          editor.session.setMode("ace/mode/html");
@@ -28,10 +33,10 @@
                  enableSnippets: false,
                  enableLiveAutocompletion: true
              });
-         editor.setValue("{{ code }}", -1);
+         editor.setValue(htmlDecode("{{ code }}"), -1);
 
          function checkAnswer() {
-           if (editor.getValue() == "{{ answer }}") {
+           if (editor.getValue() == htmlDecode("{{ answer }}")) {
              window.location.replace("../write/{{ id }}");
            }
          }

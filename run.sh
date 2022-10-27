@@ -18,3 +18,12 @@ if [[ $? -gt 0 ]]; then
   exit 2
 fi
 echo "Make-d"
+
+./WDHANY
+if [[ $? -gt 0 ]]; then
+  echo "Fail-ed"
+  cd ..
+  exit 3
+fi
+echo "Ran-ed"
+cd ..
