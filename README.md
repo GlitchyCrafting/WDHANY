@@ -1,21 +1,22 @@
 # WDHANY
 
 ## Binaries
-Only Linux binaries are included, but it can be built on Windows (I feel bad for those running this on a server.), Mac (Who even uses this as a sever?), and Linux/BSD (The only true servers).
+Both Linux and Windows Binaries will be provided.
 
 ## Build
-Unix Systems with Clang and CMake installed are officially supported
+Unix Systems with need Clang, Cmake, and Sqlite3 installed
 ``` bash
 chmod +x build.sh
 ./build.sh
 ```
-Run `./WDHANY` in the `build` directory.
+Binary is `WDHANY` in the `build` directory.
 You can also build and run at the same time:
 ```bash
 chmod +x run.sh
 ./run.sh
 ```
-If ace.js returns 404, copy `src/static/ace` to `build/static/ace`
+
+Windows build instrucitons coming soon.
 
 ## The Platform
 I created the platform to have the verbosity of W3Schools in the lessons, but in the format of FreeCodeCamp. The UI is built to be minimal using readable fonts, no more "Is this an l, or an I?", and a color scheme that's easy on the eyes. It has an online editor so nothing needs to be installed on the user's computer. It also has a live preview to allow for better learning, visualization is very helpful in design to know what code does what. No account creation is needed as everything is stored in a single cookie, though this may change in the future to allow more options for anyone using the platform.

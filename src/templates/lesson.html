@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>{{ id }} - {{ name }}</h1>
-        <pre>{{ content }}</pre>
+        <p>{{ content }}</p>
 
         <div id="code">
           <div id="editor"></div>
@@ -36,7 +36,10 @@
          editor.setValue(htmlDecode("{{ code }}"), -1);
 
          function checkAnswer() {
-           if (editor.getValue() == htmlDecode("{{ answer }}")) {
+           console.log(editor.getValue());
+           console.log(htmlDecode("{{ answer }}"));
+           console.log(editor.getValue() == htmlDecode("{{ answer }}"))
+           if (editor.getValue()== htmlDecode("{{ answer }}")) {
              window.location.replace("../write/{{ id }}");
            }
          }
