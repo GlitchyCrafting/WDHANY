@@ -8,20 +8,16 @@
   <body>
     <script>if ( document.cookie != "" ) { window.location.replace("/read"); }</script>
 
-    <h1>WDHANY</h1>
-    <p>The goal of this site is to teach people the why and how things fit together in the code. Once you finish this we recommend <a href="https://www.freecodecamp.com">FreeCodeCamp.com</a>, or just trying stuff and using <a href="https://www.w3schools.com/tags/default.asp">W3Schools</a> as a reference.</p>
+    <h1>Disclaimer</h1>
+    <p><strong>We use a cookie to track your lesson.</strong> This allows us to redirect you to your current lesson automagically without using as many resources as an account system, although I do plan on switching to accounts in the far-ahead.</p>
 
-    <h2>Disclaimer</h2>
-    <p><strong>We use a cookie to track your lesson.</strong> This saves resources compared to accounts and allows us to redirect you to your current lesson automagically. <strong>You will not be able to get back to this page once you start this tutorial.</strong></p>
-    <h2>A Bit About The Design</h2>
+    <h2>The Platform</h2>
+    <p>I created the platform to have the verbosity of W3Schools in the lessons, but in the format of FreeCodeCamp. The UI is built to be minimal using readable fonts, no more "Is this an l, or an I?", and a color scheme that's easy on the eyes. It has an online editor so nothing needs to be installed on the user's computer. It also has a live preview to allow for better learning, visualization is very helpful in design to know what code does what. No account creation is needed as everything is stored in a single cookie, though this may change in the future to allow more options for anyone using the platform.</p>
 
-    <h4>UI</h4>
-    <p>I chose the <a target="_blank" href="draculatheme.com">Dracula Colorscheme</a> because I like it and it is easy on the eyes. I designed a clean, minimal interface because a bunch of seperators and stuff isn't needed for a site like this. Fonts are <a target="_blank" href="fonts.google.com/specimen/Space+Mono">Space Mono</a> for headers and <a target="_blank" href="https://fonts.google.com/specimen/Fira+Mono">Fira Mono</a> for everything else.</p>
+    <h2>Backend</h2>
+    <p>The server is written in C++ using the Crow Framework to send web pages and the SqliteModernCPP Library to communicate with the database. The online editor is the Ace Library written in Javascript. The UI uses the Dracula Color Scheme. There is a live preview that uses Javascript Blobs to get code from the editor and display it in an IFrame. It is built with the CMake Build System and the Clang Compiler, both are fully cross-platform to Windows, Mac, and Linux.</p>
 
-    <h4>Backend</h4>
-    <p>I use the <a target="_blank" href="crowcpp.org">Crow Framework</a> for defining routes and templates and the <a target="_blank" href="github.com/SqliteModernCpp/sqlite_modern_cpp">SqliteModernCpp</a> Library to interact with the database because I, unlike others, like <a target="_blank" href="cplusplus.com">C++</a>. For a while, though, I was tempted to switch to <a target="_blank" href="djangoproject.com">Django</a> for <a target="_blank" href="python.org">Python</a> due to some issues with a different <a target="_blank" href="sqlite.org">Sqlite</a> library, but as you can see I found a better library.</p>
-
-    <button onclick="getStarted()">Get Started</button>
+    <button onclick="window.location.replace('/write/0');">Get Started</button>
 
     <script>
       function getStarted() {

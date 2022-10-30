@@ -8,3 +8,7 @@ CMakeCache*
 cmake_install.cmake
 *.cmake
 *.sqlite
+
+!build/static/
+!build/templates/
+!build/db.sqlite

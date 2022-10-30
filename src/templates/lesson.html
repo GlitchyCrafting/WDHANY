@@ -19,6 +19,9 @@
         <script src="/static/ace/ace.js"></script>
         <script src="/static/ace/ext-language_tools.js"></script>
         <script>
+
+          const answer = htmlDecode("{{ answer }}").replace(/\s+/g, '');
+
          function htmlDecode(input) {
           var doc = new DOMParser().parseFromString(input, "text/html");
           return doc.documentElement.textContent;
@@ -36,10 +39,8 @@
          editor.setValue(htmlDecode("{{ code }}"), -1);
 
          function checkAnswer() {
-           console.log(editor.getValue());
-           console.log(htmlDecode("{{ answer }}"));
-           console.log(editor.getValue() == htmlDecode("{{ answer }}"))
-           if (editor.getValue()== htmlDecode("{{ answer }}")) {
+           console.log(editor.getValue().replace(/\s+/g, '') == answer);
+           if (editor.getValue().replace(/\s+/g, '') == answer) {
              window.location.replace("../write/{{ id }}");
            }
          }
