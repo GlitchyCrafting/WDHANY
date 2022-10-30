@@ -1,5 +1,5 @@
 # WDHANY
-[!(https://www.youtube.com/watch?v=j_eAcmS4dr8)]
+[!](https://www.youtube.com/watch?v=j_eAcmS4dr8)
 
 ## Binaries
 Both Linux and Windows Binaries will be provided.
