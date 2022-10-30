@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WDHANY - Lesson {{ id }}</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/global.css">
+    </head>
+    <body>
+        <h1>{{ id }} - {{ name }}</h1>
+        <p>{{ content }}</p>
+
+        <div id="code">
+          <div id="editor"></div>
+          <iframe id="preview"></iframe>
+        </div>
+
+        <button onclick="checkAnswer()">Submit</button>
+
+        <script src="/static/ace/ace.js"></script>
+        <script src="/static/ace/ext-language_tools.js"></script>
+        <script>
+
+          const answer = htmlDecode("{{ answer }}").replace(/\s+/g, '');
+
+         function htmlDecode(input) {
+          var doc = new DOMParser().parseFromString(input, "text/html");
+          return doc.documentElement.textContent;
+        }
+
+        ace.require("ace/ext/language_tools");
+         var editor = ace.edit("editor");
+         editor.setTheme("ace/theme/dracula");
+         editor.session.setMode("ace/mode/html");
+             editor.setOptions({
+                 enableBasicAutocompletion: true,
+                 enableSnippets: false,
+                 enableLiveAutocompletion: true
+             });
+         editor.setValue(htmlDecode("{{ code }}"), -1);
+
+         function checkAnswer() {
+           console.log(editor.getValue().replace(/\s+/g, '') == answer);
+           if (editor.getValue().replace(/\s+/g, '') == answer) {
+             window.location.replace("../write/{{ id }}");
+           }
+         }
+
+        const getGeneratedPageURL = ({ source }) => {
+          const getBlobURL = (code, type) => {
+            const blob = new Blob([code], { type })
+            return URL.createObjectURL(blob)
+          }
+
+          return getBlobURL(source, 'text/html')
+        }
+
+        editor.session.on('change', function(delta) { document.getElementById("preview").src = getGeneratedPageURL({source: editor.getValue()}); })
+      </script>
+    </body>
+</html>

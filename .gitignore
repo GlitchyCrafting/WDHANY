@@ -1,6 +1,6 @@
 .ccls-cache/
 .cmake/
-build/
+build/*
 snapshots/
 CMakeFiles/
 releases/
