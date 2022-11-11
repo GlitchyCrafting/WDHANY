@@ -10,7 +10,7 @@ if [[ $? -gt 0 ]]; then
 fi
 echo "Cmake-d"
 
-make
+make -j$(nproc)
 if [[ $? -gt 0 ]]; then
   echo "Fail-ed (Make)"
   cd ..

@@ -1,0 +1,6 @@
+db = "db.sqlite"
+
+# options are [warning, error, info]
+logLevel = "warning"
+
+port = 3000

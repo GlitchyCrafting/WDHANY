@@ -1,16 +1,16 @@
 // CROW Libs
-#include "crow/common.h"
-#include "crow/http_response.h"
 #define CROW_MAIN
 #include "crow.h"
 #include "crow/middlewares/cookie_parser.h"
 
 // Std Libs
 #include <stdio.h>
-#include <filesystem>
 
 // SQLite
 #include "sqlite_modern_cpp.h"
+
+// TOML
+#include "toml.hpp"
 
 void sqlInit(sqlite::database db) {
   db <<
@@ -31,9 +31,15 @@ crow::response redirect(std::string location) {
 }
 
 int main () {
-  // Initialize everything
+  // Get Config Options
+  auto config = toml::parse("config.toml");
+  const std::string databaseName = toml::find<std::string>(config, "db");
+  const std::string logLevel = toml::find<std::string>(config, "logLevel");
+  const int port = toml::find<int>(config, "port");
+
+  // Initialize Everything
   crow::App<crow::CookieParser> app;
-  sqlite::database db("db.sqlite");
+  sqlite::database db(databaseName);
   sqlInit(db);
 
   // Define the root endpoint
@@ -84,12 +90,20 @@ int main () {
     ([&](const crow::request& req, int id){
       id = id + 1;
       auto& ctx = app.get_context<crow::CookieParser>(req);
-      ctx.set_cookie("LessonNum", std::to_string(id)).path("/").max_age(100000000).same_site(crow::CookieParser::Cookie::SameSitePolicy::None);
+      ctx.set_cookie("LessonNum", std::to_string(id)).path("/").max_age(10000).same_site(crow::CookieParser::Cookie::SameSitePolicy::None);
       return redirect("/lesson/" + std::to_string(id));
     });
 
+  if (logLevel == "warning") {
+    app.loglevel(crow::LogLevel::Warning);
+  } else if (logLevel == "error") {
+    app.loglevel(crow::LogLevel::Error);
+  } else {
+    app.loglevel(crow::LogLevel::Info);
+  }
+
   // Set the port, use multiple threads, run the app
-  app.port(3000).multithreaded().run();
+  app.port(port).multithreaded().run();
 
   return 0;
 }
