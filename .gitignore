@@ -1,15 +1,3 @@
-.ccls-cache/
-.cmake/
-build/*
-snapshots/
-CMakeFiles/
 releases/
-CMakeCache*
-cmake_install.cmake
-*.cmake
-*.sqlite
-
-!build/static/
-!build/templates/
-!build/db.sqlite
-!build/config.toml
+target/
+Cargo.lock
