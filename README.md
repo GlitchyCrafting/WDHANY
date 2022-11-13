@@ -4,9 +4,10 @@
 Both Linux and Windows Binaries will be provided.
 
 ## Build
-As it is written in Rust, just install rustup:
+1. As it is written in Rust, just install rustup:
 - Linux/MacOS `curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh`
 - Windows [Instructions](https://www.rust-lang.org/tools/install)
+2. Then Build and Run
 ```sh
   git clone https://github.com/GlitchyCrafting/WDHANY.git
   cd WDHANY
