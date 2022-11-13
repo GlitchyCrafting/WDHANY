@@ -7,6 +7,14 @@ Both Linux and Windows Binaries will be provided.
 As it is written in Rust, just install rustup:
 - Linux/MacOS `curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh`
 - Windows [Instructions](https://www.rust-lang.org/tools/install)
+```sh
+  git clone https://github.com/GlitchyCrafting/WDHANY.git
+  cd WDHANY
+  cargo build --release
+  cd target/release
+  ./wdhany
+  # ./wdhany.exe on Windows
+```
 
 ## The Platform
 I created the platform to have the verbosity of W3Schools in the lessons, but in the format of FreeCodeCamp. The UI is built to be minimal using readable fonts, no more "Is this an l, or an I?", and a color scheme that's easy on the eyes. It has an online editor so nothing needs to be installed on the user's computer. It also has a live preview to allow for better learning, visualization is very helpful in design to know what code does what. No account creation is needed as everything is stored in a single cookie, though this may change in the future to allow more options for anyone using the platform.
