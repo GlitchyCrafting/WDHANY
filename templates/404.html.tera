@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utp-8">
+    <title>WDHANY - 404</title>
+    <link rel="stylesheet" href="static/global.css">
+  </head>
+  <body>
+    <h1>404</h1>
+    <h3>Page "{{ request }}" is not found.</h3>
+  </body>
+</html>
