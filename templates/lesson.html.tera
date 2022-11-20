@@ -40,6 +40,8 @@
 
          function checkAnswer() {
            console.log(editor.getValue().replace(/\s+/g, '') == answer);
+           console.log(editor.getValue().replace(/\s+/g, ''));
+           console.log(answer);
            if (editor.getValue().replace(/\s+/g, '') == answer) {
              window.location.replace("../write/{{ id }}");
            }

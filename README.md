@@ -5,6 +5,7 @@ A learning platform used to teach students HTML (and maybe CSS in the future).
 Both Linux and Windows Binaries will be provided.
 
 ## Build
+Note: I have optimized binary size at the cost of compile speed, but not runtime speed. For faster compile times at the cost of binary size, remove the last 4 lines in [Cargo.toml](Cargo.toml).
 1. As it is written in Rust, just install rustup:
   - Linux/MacOS `curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh`
   - Windows [Instructions](https://www.rust-lang.org/tools/install)

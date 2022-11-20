@@ -5,10 +5,10 @@ use rocket::fs::{FileServer, relative};
 use rocket::http::{CookieJar, Cookie};
 use rocket::response::Redirect;
 use rocket::Request;
+use rocket::time::Duration;
 
 use rusqlite::{Connection, Result};
 
-#[allow(dead_code)]
 #[derive(Debug)]
 struct Lesson {
     name: String,
@@ -17,7 +17,6 @@ struct Lesson {
     answer: String
 }
 
-#[allow(dead_code)]
 fn get_lesson(id: i64) -> Result<Lesson, rusqlite::Error> {
     let db = Connection::open("./db.sqlite")?;
     let lesson = db.query_row(
@@ -72,7 +71,10 @@ fn lesson(id: i64) -> Option<Template> {
 
 #[get("/write/<id>")]
 fn write(cookies: &CookieJar<'_>, id: i64) -> Redirect {
-    cookies.add(Cookie::new("lesson", id.to_string()));
+    let mut c = Cookie::new("lesson", {id + 1}.to_string());
+    c.set_max_age(Duration::weeks(104));
+    assert_eq!(c.max_age(), Some(Duration::weeks(104)));
+    cookies.add(c);
     Redirect::to(uri!(lesson(id + 1)))
 }
 
