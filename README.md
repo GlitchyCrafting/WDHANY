@@ -9,14 +9,28 @@ Note: I have optimized binary size at the cost of compile speed, but not runtime
 1. As it is written in Rust, just install rustup:
   - Linux/MacOS `curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh`
   - Windows [Instructions](https://www.rust-lang.org/tools/install)
-2. Then Build and Run
+2. Then Build and Run (Use commented out alternatives on Windows)
   ```sh
     git clone https://github.com/GlitchyCrafting/WDHANY.git
     cd WDHANY
+    
     cargo build --release
-    cd target/release
+    mkdir bin
+    
+    cp target/release/wdhany bin/
+    # cp target/release/wdhany.exe bin/
+    
+    cp resources/* bin/
+    cp -r static/ bin/
+    cp -r templates/ bin/
+
+    rm bin/sqlite3.dll
+    # rm bin/libsqlite3.so.0
+
+    cd bin
+
     ./wdhany
-    # ./wdhany.exe on Windows
+    # ./wdhany.exe
   ```
 
 ## The Platform
