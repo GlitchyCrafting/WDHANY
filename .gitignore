@@ -1,3 +1,4 @@
 releases/
 target/
+build/
 Cargo.lock

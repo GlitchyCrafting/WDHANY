@@ -6,32 +6,11 @@ Both Linux and Windows Binaries will be provided.
 
 ## Build
 Note: I have optimized binary size at the cost of compile speed, but not runtime speed. For faster compile times at the cost of binary size, remove the last 4 lines in [Cargo.toml](Cargo.toml).
-1. As it is written in Rust, just install rustup:
+1. As it is written in Rust, you need rustup:
   - Linux/MacOS `curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh`
   - Windows [Instructions](https://www.rust-lang.org/tools/install)
-2. Then Build and Run (Use commented out alternatives on Windows)
-  ```sh
-    git clone https://github.com/GlitchyCrafting/WDHANY.git
-    cd WDHANY
-    
-    cargo build --release
-    mkdir bin
-    
-    cp target/release/wdhany bin/
-    # cp target/release/wdhany.exe bin/
-    
-    cp resources/* bin/
-    cp -r static/ bin/
-    cp -r templates/ bin/
-
-    rm bin/sqlite3.dll
-    # rm bin/libsqlite3.so.0
-
-    cd bin
-
-    ./wdhany
-    # ./wdhany.exe
-  ```
+2. Run the script for your platform (Linux.sh or Windows.ps1).
+3. Move the resulting WDHANY directory tho where you want it.
 
 ## The Platform
 I created the platform to have the verbosity of W3Schools in the lessons, but in the format of FreeCodeCamp. The UI is built to be minimal using readable fonts, no more "Is this an l, or an I?", and a color scheme that's easy on the eyes. It has an online editor so nothing needs to be installed on the user's computer. It also has a live preview to allow for visualization of what code does what. No account creation is needed as everything is stored in a single cookie.
