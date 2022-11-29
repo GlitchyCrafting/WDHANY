@@ -19,25 +19,17 @@ struct Lesson {
 
 fn get_lesson(id: i64) -> Result<Lesson, rusqlite::Error> {
     let db = Connection::open("./db.sqlite")?;
-    let lesson = db.query_row(
+    Ok(db.query_row(
         "SELECT name,content,code,answer FROM lesson WHERE _id = ?",
         [id],
         |row| {
-            let name_d = row.get(0);
-            let content_d = row.get(1);
-            let code_d = row.get(2);
-            let answer_d = row.get(3);
-
             Ok(Lesson {
-                name: name_d.unwrap(),
-                content: content_d.unwrap(),
-                code: code_d.unwrap(),
-                answer: answer_d.unwrap(),
+                name: row.get(0).unwrap(),
+                content: row.get(1).unwrap(),
+                code: row.get(2).unwrap(),
+                answer: row.get(3).unwrap(),
             })
-        }
-        );
-
-    Ok(lesson.unwrap())
+        }).unwrap())
 }
 
 #[catch(404)]
@@ -61,7 +53,7 @@ fn lesson(id: i64) -> Option<Template> {
     let lesson_d = get_lesson(id).ok().unwrap();
 
     Some(Template::render("lesson", context!{
-        id: id,
+        id,
         name: lesson_d.name,
         content: lesson_d.content,
         code: lesson_d.code,

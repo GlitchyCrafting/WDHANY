@@ -1,4 +1,4 @@
-# WDHANY
+# Clárfoghlama
 A learning platform used to teach students HTML (and maybe CSS in the future).
 
 ## Binaries

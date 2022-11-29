@@ -20,7 +20,7 @@
         <script src="/static/ace/ext-language_tools.js"></script>
         <script>
 
-          const answer = htmlDecode("{{ answer }}").replace(/\s+/g, '');
+          const ANSWER = htmlDecode("{{ answer }}").replace(/\s+/g, '').toLowerCase();
 
          function htmlDecode(input) {
           var doc = new DOMParser().parseFromString(input, "text/html");
@@ -39,10 +39,7 @@
          editor.setValue(htmlDecode("{{ code }}"), -1);
 
          function checkAnswer() {
-           console.log(editor.getValue().replace(/\s+/g, '') == answer);
-           console.log(editor.getValue().replace(/\s+/g, ''));
-           console.log(answer);
-           if (editor.getValue().replace(/\s+/g, '') == answer) {
+           if (editor.getValue().replace(/\s+/g, '') == ANSWER) {
              window.location.replace("../write/{{ id }}");
            }
          }
