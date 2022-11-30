@@ -1,6 +1,6 @@
 # WDHANY
 
-#### If you're looking for one of my projects, you can find it in the list below.
+#### If I sent you here for one of my projects, you can find it in the list below.
 
 | Name | Description |
 | ---- | ----------- |
