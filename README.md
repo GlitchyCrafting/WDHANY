@@ -1,7 +1,7 @@
 # WDHANY
 
 #### If I sent you here for one of my projects, you can find it in the list below.
-##### Projects are named after mountains in the US. Related projects are named after mountains in the same state.
+##### Projects are named after mountains in Tennessee, in case you were wondering.
 
 | Name | Description |
 | ---- | ----------- |
