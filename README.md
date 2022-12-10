@@ -1,7 +1,8 @@
 # WDHANY
 
 #### If I sent you here for one of my projects, you can find it in the list below.
+##### Projects are named after mountains in the US. Related projects are named after mountains in the same state.
 
 | Name | Description |
 | ---- | ----------- |
-| [Clarfoghlama](https://github.com/GlitchyCrafting/Clarfoghlama) | A learning platform used to teach students HTML |
+| [Mount Kephart](https://github.com/GlitchyCrafting/Mount-Kephart) | A learning platform used to teach students HTML |
